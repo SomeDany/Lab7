@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Веклич Д.Н.</title>
+            <style>
+                .a {
+                    color: blue;
+                    /* Цвет ссылок */
+                    text-decoration: none;
+                    /* Убираем подчёркивание */
+                }
+                .a:hover {
+                    border-bottom: 1px dashed blue;
+                    /* Добавляем синее пунктирное подчёркивание */
+                }
+                .b{
+                    color: green;
+                    border-bottom: 1px dashed red;
+                }
+            </style>
+                
+        </head> 
+            <body>
+                <ul>
+                    <li><a href="https://google.com"> https://google.com</a></li>
+                    <li><a href="https://clck.ru/34GNsp"> https://clck.ru/34GNsp</a></li>
+                    <li><a href="http://e.biblio.bru.by"> http://e.biblio.bru.by</a></li>
+                    <li><a href="https://mail.ru"> https://mail.ru</a></li>
+                    <li><a href="/cat.de"> /cat.de</a></li>
+                    <li><a href="home.com"> home.com</a></li>
+                </ul>
+                <script>
+                    "use strict";
+                    let links = document.querySelectorAll('a');
+                    
+                    for (let link of links) {
+                        let href = link.getAttribute('href');
+                        if (href.includes('http://') || href.includes('https://')){
+                            //link.style.borderBottom = '3px dashed red';
+                            link.style.textDecoration='none';
+                            link.classList.toggle("b");
+                        }
+                    }
+                </script>
+            </body>
+    </html>

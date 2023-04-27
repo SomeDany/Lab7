@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Веклич Д.Н.</title>
+            <link rel="stylesheet" href="style.css">
+                
+        </head>
+            <body>
+                <div>
+                    <div id="table"></div>
+                </div>
+                <script>
+                    "use strict";
+
+                    class Hardware{
+                        constructor(pType, pCapacity, pInterface, pSpindleSpeed){
+                        this.type=pType;
+                        this.capacity=pCapacity;
+                        this.interface=pInterface;
+                        this.SpindleSpeed=pSpindleSpeed;
+                        
+                            Object.defineProperty(this, "FullInfo",{
+                                get(){
+                                   return `${this.type} ${this.capacity} ${this.interface} ${this.SpindleSpeed}`;
+                                },
+
+                                set(value){
+                                   [this.type, this.capacity, this.interface, this.SpindleSpeed] = value.split(" ");
+                                }
+                            });
+                        };
+
+                        info(){
+                            document.write("Тип накопителя: ",this.type);
+                            document.write("<br \/>Объём: ",this.capacity);
+                            document.write("<br \/>Интерфейс: ",this.interface);
+                            document.write("<br \/>Скорость вращения шпинделя: ",this.SpindleSpeed);
+                        }
+                    }
+
+                    class A extends Hardware{
+                        constructor(pType, pCapacity, pInterface, pSpindleSpeed,pData,pPrice){
+                            super(pType, pCapacity, pInterface, pSpindleSpeed);
+                            this.data = pData;
+                            this.price = pPrice;
+                        };
+
+                        info(){
+                            super.info();
+                            document.write("<br \/>Дата выхода на рынок: ",this.data);
+                            document.write("<br \/>Цена: ",this.price);
+                        };
+                    }
+
+                    let disk1 = new Hardware("HDD 3.5","1 TB","SATA III","7200 rpm");
+                    let disk2 = new A("HDD 3.5","2 TB","SATA III","5400 rpm","11.10.2021","4890 Руб");
+                    let disk3 = new A("HDD 3.5","1 TB","SATA III","6400 rpm","07.02.2020","3580 Руб");
+                    let disk4 = new A("HDD 3.5","2 TB","SATA III","7200 rpm","21.06.2019","5210 Руб");
+                    let disk5 = new A("HDD 3.5","4 TB","SATA III","6200 rpm","11.09.2022","6250 Руб");
+                    let disk6 = new A("HDD 3.5","8 TB","SATA III","5400 rpm","11.12.2022","7895 Руб");
+                    
+                    let Tabl = document.querySelector('#table');
+
+                    let disks=[]; // Массив объектов
+
+                    disks.push(disk2);
+                    disks.push(disk3);
+                    disks.push(disk4);
+                    disks.push(disk5);
+                    disks.push(disk6);
+
+                    
+
+                    let headers=['Тип накопителя','Объём','Интерфейс','Скорость вращения шпинделя','Дата выхода на рынок','Цена']; // Заголовки
+
+                    let table = document.createElement('table'); 
+                    let headerRow = document.createElement('tr');
+
+                    /// Формирование заголовка
+                    headers.forEach(headerText => {
+                        let header = document.createElement('th');
+                        let textNode = document.createTextNode(headerText);
+                        header.appendChild(textNode);
+                        headerRow.appendChild(header);
+                    });
+
+                    table.appendChild(headerRow);
+
+                    ///
+
+                    /// Формирование строк из значений объектов
+                    disks.forEach(dsk => {
+                        let row = document.createElement('tr');
+
+                        Object.values(dsk).forEach(text => {
+                            let cell = document.createElement('td');
+                            let textNode = document.createTextNode(text);
+                            cell.appendChild(textNode);
+                            row.appendChild(cell);
+                        })
+
+                        table.appendChild(row);
+                    });
+                    ///
+
+
+                    Tabl.appendChild(table);
+
+
+                </script>
+            </body>
+    </html>

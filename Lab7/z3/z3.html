@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Веклич Д.Н.</title>
+            <style>
+                ul, #myUL {
+                  list-style-type: none;
+                }
+                
+                #myUL {
+                  margin: 0;
+                  padding: 0;
+                }
+                
+                /* Стрелка */
+                .caret {                
+                  cursor: pointer;
+                  user-select: none;
+                }
+                
+                .caret::before {
+                  content: "\02C3";
+                  color: black;
+                  display: inline-block;
+                  margin-right: 6px;
+                }
+
+                .caret-down::before {
+                    content: "\02C5";
+                }
+
+                /* Скрытый список */
+                .closed {
+                  display: none;
+                }
+                
+                /* Открытый список */
+                .active {
+                  display: block;
+                }
+
+                .bold{
+                    font-weight: bold;
+                }
+                </style>
+                
+        </head> 
+            <body>
+                <ul id="myUL">
+                    <li><span class="caret">[Documents]</span>
+                      <ul class="closed">
+                        <li>text.txt</li>
+                        <li><span class="caret">[Test]</span>
+                          <ul class="closed">
+                            <li>index.html</li>
+                            <li>pic.jpg</li>
+                            <li><span class="caret">[Web]</span>
+                              <ul class="closed">
+                                <li>Yandex Browser</li>
+                                <li>Discord</li>
+                                <li>Teams</li>
+                              </ul>
+                            </li>
+                            <li><span class="caret">[C++]</span>
+                                <ul class="closed">
+                                    <li>Test.cpp</li>
+                                    <li>Ab.cpp</li>
+                                    <li>Prog.cpp</li>
+                                </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+
+
+
+                <script>
+
+
+                let items = document.querySelectorAll('ul li');
+                items.forEach((item) =>{
+                    item.addEventListener('mouseover', (event) =>{
+                        event.target.classList.add('bold');
+                    });
+                    item.addEventListener('mouseout', (event) =>{
+                        event.target.classList.remove('bold');
+                    });
+                });
+                
+                let tog = document.getElementsByClassName("caret");
+                
+                for (let i = 0; i < tog.length; i++) {
+                    tog[i].addEventListener("click", function() {
+                        this.parentElement.querySelector(".closed").classList.toggle("active");
+                        this.classList.toggle("caret-down");
+                    });
+                } 
+                </script>
+            </body>
+    </html>

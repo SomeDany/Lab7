@@ -1,0 +1,17 @@
+body{
+    text-align: left;
+}
+
+div{
+    display: inline-block;
+}
+
+#table {
+    display: block;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 7px;
+}
